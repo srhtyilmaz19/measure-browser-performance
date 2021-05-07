@@ -1,0 +1,19 @@
+{
+  "name": "measure-browser-performance",
+  "version": "1.0.0",
+  "description": "tool to measure metrics like fcp ttfb windowload domload ",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srhtyilmaz19/measure-browser-performance.git"
+  },
+  "author": "Serhat Yilmaz <srhtyilmaz19@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/srhtyilmaz19/measure-browser-performance/issues"
+  },
+  "homepage": "https://github.com/srhtyilmaz19/measure-browser-performance#readme"
+}
