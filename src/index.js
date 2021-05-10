@@ -48,6 +48,8 @@ const measureBrowserPerformance = (endpoint) => ({
         window.onload = () => {
             const {performance: {timing}} = window
 
+            const startTime = performance.now()
+
             const values = {
                 resource_load: getResourceLoad(),
                 files: getFiles(),
@@ -57,6 +59,11 @@ const measureBrowserPerformance = (endpoint) => ({
                 window_load: getWindowLoad(timing),
                 domain: window.location.hostname
             }
+
+
+            const endTime = performance.now()
+
+            console.log("metrics measured in " + (endTime - startTime) + " milliseconds.")
 
             storeData(endpoint, values).then(response => response);
         };

@@ -1,6 +1,6 @@
 {
   "name": "measure-browser-performance",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "tool to measure metrics like fcp ttfb windowload domload ",
   "main": "src/index.js",
   "scripts": {
