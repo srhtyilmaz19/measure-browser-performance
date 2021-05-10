@@ -41,7 +41,7 @@ const getResourceLoad = () => {
 };
 
 
-const measureBrowserPerformance = (endpoint) => ({
+const measureBrowserPerformance = (endpoint, showMeasureTime = true) => ({
     analyse() {
         if (!endpoint) throw new Error('endpoint parameter is required !');
 
@@ -63,7 +63,9 @@ const measureBrowserPerformance = (endpoint) => ({
 
             const endTime = performance.now()
 
-            console.log("metrics measured in " + (endTime - startTime) + " milliseconds.")
+            if (showMeasureTime){
+                console.log("metrics measured in " + (endTime - startTime) + " milliseconds.")
+            }
 
             storeData(endpoint, values).then(response => response);
         };

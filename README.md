@@ -4,9 +4,10 @@
 ### Install
 ```javascript
 npm install measure-browser-performance
+```
 
-
-// your client side !
+Client Side
+```javascript
 import MeasureBrowserPerformance from "measure-browser-performance";
 const PerformanceMetricAnalyser = MeasureBrowserPerformance(YOUR_SERVICE_ENDPOINT);
 ```
@@ -100,10 +101,15 @@ const getFiles = () => window.performance
 
 Performance Analyser accept and endpoint which represents url to store calculated metrics of the web page. it's triggered by [window:onLoad event](https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event) and consumes the dynamic endpoint which is defined by it's own initialization with calculated metrics .
 ```javascript
-const performanceAnalyser = (endpoint) => ({
+const measureBrowserPerformance = (endpoint, showMeasureTime = true) => ({
     analyse() {
+        if (!endpoint) throw new Error('endpoint parameter is required !');
+
         window.onload = () => {
             const {performance: {timing}} = window
+
+            const startTime = performance.now()
+
             const values = {
                 resource_load: getResourceLoad(),
                 files: getFiles(),
@@ -113,6 +119,14 @@ const performanceAnalyser = (endpoint) => ({
                 window_load: getWindowLoad(timing),
                 domain: window.location.hostname
             }
+
+
+            const endTime = performance.now()
+
+            if (showMeasureTime){
+                console.log("metrics measured in " + (endTime - startTime) + " milliseconds.")
+            }
+
             storeData(endpoint, values).then(response => response);
         };
     }
@@ -140,4 +154,11 @@ Calculates measurement time . You can observe measurement time in your browser c
 
         console.log("metrics measured in " + (endTime - startTime) + " milliseconds.")
 ```
+
+Parameters:
+
+| Parameter                 | Default       | Required  | Description   |	
+| :------------------------ |:-------------:|:-------------:| :-------------|
+| endpoint 	     |           |YES | endpoint to consume with measured params
+| showMeasureTime| true           |NO | consider to see measurement time in your console.
 
