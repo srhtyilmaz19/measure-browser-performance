@@ -1,6 +1,6 @@
 {
   "name": "measure-browser-performance",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "tool to measure metrics like fcp ttfb windowload domload ",
   "main": "src/index.js",
   "scripts": {
@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/srhtyilmaz19/measure-browser-performance/issues"
   },
-  "homepage": "https://github.com/srhtyilmaz19/measure-browser-performance#readme"
+  "homepage": "https://github.com/srhtyilmaz19/measure-browser-performance#readme",
+  "readme": "README.md"
 }
