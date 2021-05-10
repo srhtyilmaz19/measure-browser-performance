@@ -1,8 +1,8 @@
-# perf-analytics-tool
+# measure-browser-performance
 
 
 ### Install
-```javascript
+```
 npm install measure-browser-performance
 ```
 
@@ -34,21 +34,21 @@ const getFCP = () => {
         .find(entry => entry.name === 'first-contentful-paint');
 
     return contentPaint ? contentPaint.startTime : 0;
-}
+};
 ```
 
 ### TTFB(Time to First Byte)
 
 Time to first byte (TTFB) is a metric for determining the responsiveness of a web server. It measures the amount of time between creating a connection to the server and downloading the contents of a web page.
 ```javascript
-const getTTFB = (timing) => timing.responseStart - timing.requestStart
+const getTTFB = (timing) => timing.responseStart - timing.requestStart;
 ```
 
 ### DOM LOAD
 
 Dom Load Time represents the time from page initialization to the DomContentLoaded event or, for older Internet Explorer browsers, to the time the DOM is "interactive".
 ```javascript
-const getDomLoad = (timing) => Math.round(timing.domContentLoadedEventEnd - timing.navigationStart)
+const getDomLoad = (timing) => Math.round(timing.domContentLoadedEventEnd - timing.navigationStart);
 ```
 
 
@@ -93,7 +93,7 @@ Measure Network Timing for Document, Image, Font, Js and Css
 ```javascript
 const getFiles = () => window.performance
     .getEntriesByType('resource')
-    .map(entry => getTimingFromEntry(entry))
+    .map(entry => getTimingFromEntry(entry));
 ```
 
 
@@ -106,9 +106,9 @@ const measureBrowserPerformance = (endpoint, showMeasureTime = true) => ({
         if (!endpoint) throw new Error('endpoint parameter is required !');
 
         window.onload = () => {
-            const {performance: {timing}} = window
+            const {performance: {timing}} = window;
 
-            const startTime = performance.now()
+            const startTime = performance.now();
 
             const values = {
                 resource_load: getResourceLoad(),
@@ -121,10 +121,10 @@ const measureBrowserPerformance = (endpoint, showMeasureTime = true) => ({
             }
 
 
-            const endTime = performance.now()
+            const endTime = performance.now();
 
             if (showMeasureTime){
-                console.log("metrics measured in " + (endTime - startTime) + " milliseconds.")
+                console.log("metrics measured in " + (endTime - startTime) + " milliseconds.");
             }
 
             storeData(endpoint, values).then(response => response);
@@ -139,7 +139,7 @@ const measureBrowserPerformance = (endpoint, showMeasureTime = true) => ({
 Calculates measurement time . You can observe measurement time in your browser console.
 ```javascript
 
-      const startTime = performance.now()
+      const startTime = performance.now();
 
       const values = {
                 resource_load: getResourceLoad(),
@@ -150,9 +150,10 @@ Calculates measurement time . You can observe measurement time in your browser c
                 window_load: getWindowLoad(timing),
                 domain: window.location.hostname
             };
+
         const endTime = performance.now();
 
-        console.log("metrics measured in " + (endTime - startTime) + " milliseconds.")
+        console.log("metrics measured in " + (endTime - startTime) + " milliseconds.");
 ```
 
 Parameters:
